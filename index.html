@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Kemasin - Percetakan Kemasan Custom</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #ff6b35;
+            --primary-dark: #e95522;
+            --secondary: #fff3ed;
+            --dark: #222;
+            --gray: #666;
+            --light: #f8f9fa;
+            --white: #fff;
+            --border: #e8e8e8;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            color: var(--dark);
+            background: #fff;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            width: min(1180px, 92%);
+            margin: auto;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================== */
+
+        header {
+            background: white;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: 800;
+            color: var(--primary);
+            white-space: nowrap;
+        }
+
+        .logo span {
+            color: var(--dark);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 28px;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            font-size: 14px;
+            font-weight: 600;
+            transition: .3s;
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary);
+        }
+
+        .nav-buttons {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cart {
+            border: 1px solid var(--border);
+            padding: 9px 14px;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .btn {
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 700;
+            transition: .3s;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            background: white;
+        }
+
+        .btn-outline:hover {
+            background: var(--secondary);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 26px;
+            cursor: pointer;
+        }
+
+        /* =========================
+           HERO
+        ========================== */
+
+        .hero {
+            background: linear-gradient(135deg, #fff7f2, #fff);
+            padding: 75px 0;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1.1fr .9fr;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .hero-text .badge {
+            display: inline-block;
+            background: #ffe5d9;
+            color: var(--primary-dark);
+            padding: 7px 13px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 18px;
+        }
+
+        .hero h1 {
+            font-size: clamp(36px, 5vw, 62px);
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+        }
+
+        .hero p {
+            color: var(--gray);
+            max-width: 570px;
+            font-size: 17px;
+            margin-bottom: 28px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .hero-image {
+            min-height: 390px;
+            border-radius: 25px;
+            background:
+                linear-gradient(135deg, rgba(255,107,53,.85), rgba(255,159,67,.75)),
+                url("https://images.unsplash.com/photo-1606913084603-3e7702b01627?auto=format&fit=crop&w=1000&q=80")
+                center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 20px 50px rgba(0,0,0,.12);
+        }
+
+        .hero-card {
+            background: rgba(255,255,255,.95);
+            padding: 25px;
+            border-radius: 16px;
+            width: 75%;
+            text-align: center;
+        }
+
+        .hero-card .box-icon {
+            font-size: 65px;
+            margin-bottom: 10px;
+        }
+
+        .hero-card h3 {
+            margin-bottom: 5px;
+        }
+
+        .hero-card p {
+            font-size: 13px;
+            margin: auto;
+        }
+
+        /* =========================
+           CATEGORY
+        ========================== */
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .section-heading .small-title {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 14px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .section-heading h2 {
+            font-size: 34px;
+            margin-bottom: 10px;
+        }
+
+        .section-heading p {
+            color: var(--gray);
+        }
+
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 18px;
+        }
+
+        .category-card {
+            padding: 28px 15px;
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            text-align: center;
+            background: white;
+            transition: .3s;
+        }
+
+        .category-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--primary);
+            box-shadow: 0 12px 30px rgba(0,0,0,.07);
+        }
+
+        .category-icon {
+            width: 65px;
+            height: 65px;
+            margin: 0 auto 15px;
+            background: var(--secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+        }
+
+        .category-card h3 {
+            font-size: 16px;
+        }
+
+        .category-card p {
+            color: var(--gray);
+            font-size: 12px;
+        }
+
+        /* =========================
+           PRODUCTS
+        ========================== */
+
+        .products-section {
+            background: var(--light);
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 22px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: .3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,.08);
+        }
+
+        .product-image {
+            height: 210px;
+            background: #f1f1f1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 75px;
+        }
+
+        .product-info {
+            padding: 18px;
+        }
+
+        .product-category {
+            color: var(--primary);
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .product-info h3 {
+            margin: 5px 0;
+            font-size: 17px;
+        }
+
+        .product-info p {
+            color: var(--gray);
+            font-size: 13px;
+            margin-bottom: 12px;
+        }
+
+        .price {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .product-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .product-bottom .btn {
+            padding: 9px 13px;
+            font-size: 12px;
+        }
+
+        /* =========================
+           PROMO
+        ========================== */
+
+        .promo {
+            padding: 65px 0;
+        }
+
+        .promo-box {
+            background: linear-gradient(120deg, #ff6b35, #ff914d);
+            border-radius: 22px;
+            padding: 50px;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .promo-box h2 {
+            font-size: 35px;
+            margin-bottom: 10px;
+        }
+
+        .promo-box p {
+            opacity: .9;
+        }
+
+        .promo-box .btn {
+            background: white;
+            color: var(--primary);
+            white-space: nowrap;
+        }
+
+        /* =========================
+           WHY US
+        ========================== */
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 25px;
+        }
+
+        .feature-icon {
+            font-size: 38px;
+            margin-bottom: 12px;
+        }
+
+        .feature h3 {
+            font-size: 17px;
+            margin-bottom: 7px;
+        }
+
+        .feature p {
+            color: var(--gray);
+            font-size: 13px;
+        }
+
+        /* =========================
+           FOOTER
+        ========================== */
+
+        footer {
+            background: #202020;
+            color: white;
+            padding: 55px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            font-size: 25px;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+
+        footer p {
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        .footer-col h3 {
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col li {
+            margin-bottom: 9px;
+            color: #aaa;
+            font-size: 14px;
+        }
+
+        .footer-col li a:hover {
+            color: white;
+        }
+
+        .copyright {
+            border-top: 1px solid #333;
+            padding-top: 20px;
+            text-align: center;
+            color: #777;
+            font-size: 12px;
+        }
+
+        /* =========================
+           RESPONSIVE TABLET
+        ========================== */
+
+        @media (max-width: 900px) {
+
+            .nav-menu {
+                position: absolute;
+                top: 72px;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                gap: 0;
+                border-bottom: 1px solid var(--border);
+                display: none;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .nav-menu li {
+                width: 100%;
+                text-align: center;
+                padding: 15px;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-buttons {
+                margin-left: auto;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-image {
+                min-height: 330px;
+            }
+
+            .categories {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .products {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .features {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* =========================
+           RESPONSIVE MOBILE
+        ========================== */
+
+        @media (max-width: 600px) {
+
+            .navbar {
+                height: 65px;
+            }
+
+            .logo {
+                font-size: 21px;
+            }
+
+            .cart {
+                display: none;
+            }
+
+            .hero {
+                padding: 55px 0;
+            }
+
+            .hero h1 {
+                font-size: 38px;
+            }
+
+            .hero p {
+                font-size: 15px;
+            }
+
+            .hero-image {
+                min-height: 280px;
+            }
+
+            section {
+                padding: 55px 0;
+            }
+
+            .section-heading h2 {
+                font-size: 27px;
+            }
+
+            .categories {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .products {
+                grid-template-columns: 1fr;
+            }
+
+            .product-image {
+                height: 230px;
+            }
+
+            .promo-box {
+                padding: 30px 25px;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .promo-box h2 {
+                font-size: 27px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+
+    <header>
+        <div class="container navbar">
+
+            <a href="#" class="logo">
+                Kema<span>sin</span>
+            </a>
+
+            <nav>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#kategori">Kategori</a></li>
+                    <li><a href="#produk">Produk</a></li>
+                    <li><a href="#keunggulan">Keunggulan</a></li>
+                    <li><a href="#kontak">Kontak</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-buttons">
+                <a href="#" class="cart">🛒 Keranjang</a>
+                <a href="#" class="btn btn-primary">Login</a>
+                <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+            </div>
+
+        </div>
+    </header>
+
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <section class="hero" id="home">
+
+        <div class="container hero-content">
+
+            <div class="hero-text">
+
+                <span class="badge">
+                    ✨ Percetakan Kemasan Custom
+                </span>
+
+                <h1>
+                    Kemasan Keren,
+                    <span>Brand Makin Menarik.</span>
+                </h1>
+
+                <p>
+                    Pesan berbagai kebutuhan kemasan custom dengan mudah.
+                    Cocok untuk UMKM, makanan, minuman, kosmetik,
+                    hampers, dan berbagai kebutuhan bisnis Anda.
+                </p>
+
+                <div class="hero-buttons">
+                    <a href="#produk" class="btn btn-primary">
+                        Lihat Produk →
+                    </a>
+
+                    <a href="#kontak" class="btn btn-outline">
+                        Konsultasi Gratis
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="hero-image">
+
+                <div class="hero-card">
+
+                    <div class="box-icon">
+                        📦
+                    </div>
+
+                    <h3>
+                        Custom Packaging
+                    </h3>
+
+                    <p>
+                        Cetak sesuai ukuran, desain,
+                        bahan dan kebutuhan bisnis Anda.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         CATEGORY
+    ========================== -->
+
+    <section id="kategori">
+
+        <div class="container">
+
+            <div class="section-heading">
+
+                <div class="small-title">
+                    Kategori Produk
+                </div>
+
+                <h2>
+                    Pilih Kemasan Anda
+                </h2>
+
+                <p>
+                    Berbagai pilihan produk percetakan untuk kebutuhan bisnis.
+                </p>
+
+            </div>
+
+
+            <div class="categories">
+
+                <div class="category-card">
+                    <div class="category-icon">📦</div>
+                    <h3>Box Kemasan</h3>
+                    <p>Custom packaging</p>
+                </div>
+
+                <div class="category-card">
+                    <div class="category-icon">🛍️</div>
+                    <h3>Paper Bag</h3>
+                    <p>Paper bag custom</p>
+                </div>
+
+                <div class="category-card">
+                    <div class="category-icon">🏷️</div>
+                    <h3>Sticker</h3>
+                    <p>Label & branding</p>
+                </div>
+
+                <div class="category-card">
+                    <div class="category-icon">🥡</div>
+                    <h3>Food Packaging</h3>
+                    <p>Kemasan makanan</p>
+                </div>
+
+                <div class="category-card">
+                    <div class="category-icon">🎁</div>
+                    <h3>Hampers</h3>
+                    <p>Gift packaging</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         PRODUCTS
+    ========================== -->
+
+    <section class="products-section" id="produk">
+
+        <div class="container">
+
+            <div class="section-heading">
+
+                <div class="small-title">
+                    Produk Terlaris
+                </div>
+
+                <h2>
+                    Pilihan Kemasan
+                </h2>
+
+                <p>
+                    Temukan kemasan yang sesuai dengan kebutuhan bisnis Anda.
+                </p>
+
+            </div>
+
+
+            <div class="products">
+
+                <!-- PRODUCT 1 -->
+
+                <div class="product-card">
+
+                    <div class="product-image">
+                        📦
+                    </div>
+
+                    <div class="product-info">
+
+                        <span class="product-category">
+                            Box
+                        </span>
+
+                        <h3>
+                            Box Packaging Custom
+                        </h3>
+
+                        <p>
+                            Box custom dengan desain sesuai brand.
+                        </p>
+
+                        <div class="price">
+                            Mulai Rp 1.500
+                        </div>
+
+                        <div class="product-bottom">
+
+                            <span>⭐ 4.9</span>
+
+                            <a href="#" class="btn btn-primary">
+                                Pesan
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PRODUCT 2 -->
+
+                <div class="product-card">
+
+                    <div class="product-image">
+                        🛍️
+                    </div>
+
+                    <div class="product-info">
+
+                        <span class="product-category">
+                            Paper Bag
+                        </span>
+
+                        <h3>
+                            Paper Bag Custom
+                        </h3>
+
+                        <p>
+                            Paper bag dengan logo bisnis Anda.
+                        </p>
+
+                        <div class="price">
+                            Mulai Rp 2.000
+                        </div>
+
+                        <div class="product-bottom">
+
+                            <span>⭐ 4.8</span>
+
+                            <a href="#" class="btn btn-primary">
+                                Pesan
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PRODUCT 3 -->
+
+                <div class="product-card">
+
+                    <div class="product-image">
+                        🏷️
+                    </div>
+
+                    <div class="product-info">
+
+                        <span class="product-category">
+                            Sticker
+                        </span>
+
+                        <h3>
+                            Sticker Label
+                        </h3>
+
+                        <p>
+                            Sticker waterproof untuk branding produk.
+                        </p>
+
+                        <div class="price">
+                            Mulai Rp 500
+                        </div>
+
+                        <div class="product-bottom">
+
+                            <span>⭐ 4.9</span>
+
+                            <a href="#" class="btn btn-primary">
+                                Pesan
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PRODUCT 4 -->
+
+                <div class="product-card">
+
+                    <div class="product-image">
+                        🥡
+                    </div>
+
+                    <div class="product-info">
+
+                        <span class="product-category">
+                            Food
+                        </span>
+
+                        <h3>
+                            Food Box Custom
+                        </h3>
+
+                        <p>
+                            Kemasan makanan dengan desain menarik.
+                        </p>
+
+                        <div class="price">
+                            Mulai Rp 1.800
+                        </div>
+
+                        <div class="product-bottom">
+
+                            <span>⭐ 4.8</span>
+
+                            <a href="#" class="btn btn-primary">
+                                Pesan
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         PROMO
+    ========================== -->
+
+    <section class="promo">
+
+        <div class="container">
+
+            <div class="promo-box">
+
+                <div>
+
+                    <h2>
+                        Mau Cetak Kemasan Custom?
+                    </h2>
+
+                    <p>
+                        Konsultasikan ukuran, bahan, desain dan jumlah
+                        pesanan dengan tim kami.
+                    </p>
+
+                </div>
+
+                <a href="#kontak" class="btn">
+                    Konsultasi Sekarang →
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         FEATURES
+    ========================== -->
+
+    <section id="keunggulan">
+
+        <div class="container">
+
+            <div class="section-heading">
+
+                <div class="small-title">
+                    Kenapa Kemasin?
+                </div>
+
+                <h2>
+                    Percetakan Lebih Mudah
+                </h2>
+
+            </div>
+
+
+            <div class="features">
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        🎨
+                    </div>
+
+                    <h3>
+                        Custom Design
+                    </h3>
+
+                    <p>
+                        Buat desain kemasan sesuai identitas brand.
+                    </p>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        ⚡
+                    </div>
+
+                    <h3>
+                        Proses Cepat
+                    </h3>
+
+                    <p>
+                        Produksi dengan proses yang efisien.
+                    </p>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        💰
+                    </div>
+
+                    <h3>
+                        Harga Terjangkau
+                    </h3>
+
+                    <p>
+                        Pilihan harga sesuai kebutuhan dan jumlah pesanan.
+                    </p>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        🚚
+                    </div>
+
+                    <h3>
+                        Pengiriman
+                    </h3>
+
+                    <p>
+                        Produk dikirim ke berbagai wilayah Indonesia.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer id="kontak">
+
+        <div class="container">
+
+            <div class="footer-grid">
+
+                <div>
+
+                    <div class="footer-logo">
+                        Kemasin
+                    </div>
+
+                    <p>
+                        Solusi percetakan kemasan custom
+                        untuk membantu bisnis Anda tampil lebih profesional.
+                    </p>
+
+                </div>
+
+
+                <div class="footer-col">
+
+                    <h3>
+                        Produk
+                    </h3>
+
+                    <ul>
+                        <li><a href="#">Box Kemasan</a></li>
+                        <li><a href="#">Paper Bag</a></li>
+                        <li><a href="#">Sticker</a></li>
+                        <li><a href="#">Food Packaging</a></li>
+                    </ul>
+
+                </div>
+
+
+                <div class="footer-col">
+
+                    <h3>
+                        Bantuan
+                    </h3>
+
+                    <ul>
+                        <li><a href="#">Cara Pesan</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Pengiriman</a></li>
+                        <li><a href="#">Pembayaran</a></li>
+                    </ul>
+
+                </div>
+
+
+                <div class="footer-col">
+
+                    <h3>
+                        Hubungi Kami
+                    </h3>
+
+                    <ul>
+                        <li>📱 0812-3456-7890</li>
+                        <li>📧 hello@kemasin.id</li>
+                        <li>📍 Jakarta, Indonesia</li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+            <div class="copyright">
+
+                © 2026 Kemasin. Semua hak dilindungi.  <a href="https://kemasankosmetik.com/" style="color:#FF0000;">kemasankosmetik</a>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <script>
+
+        function toggleMenu() {
+            document
+                .getElementById("navMenu")
+                .classList.toggle("active");
+        }
+
+    </script>
+
+</body>
+</html>
